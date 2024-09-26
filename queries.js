@@ -20,8 +20,8 @@ async function signup(event){
 		last_name: lastName,
 		password: passwordUser
 	};
-	
-	try{
+
+	try {
 		const response = await fetch('http://127.0.0.1:5000/auth/register', {
 			method: 'POST',
 			headers: {
@@ -30,28 +30,29 @@ async function signup(event){
 			body: JSON.stringify(newUser)
 		});
 
-		if(response.ok) {
-			console.log('Registration good');
-		}
-		else {
+		if (response.ok) {
+			errorMessage.style.display = 'none';
+			console.log('Registration successful');
+			window.location.href = "verify.html";
+		} else {
 			const errorData = await response.json();
-			alert('Error: ${errorData.message}');
+			errorMessage.style.display = 'block';
+			errorMessage.textContent = errorData.message;
 		}
-	}
-	catch(error) {
+	} catch (error) {
 		console.error('Error connecting to server', error);
+		errorMessage.style.display = 'block';
+		errorMessage.textContent = 'Error connecting to the server.';
 	}
 
-	const userQuery = JSON.stringify(newUser);
-
-	console.log(userQuery);
+	console.log(JSON.stringify(newUser));
 }
 
 async function signin(){
+	const display = document.getElementById('message').value;
 	const passInput = document.getElementById('passInput').value;
 	const emailInput = document.getElementById('emailInput').value;
-	const errorMessage = document.getElementById('errorMessage').value;
-
+	
 	try {
 		const response = await fetch('http://127.0.0.1:5000/auth/login', {
 			method: 'POST',
@@ -66,14 +67,21 @@ async function signin(){
 		});
 
 		if (response.ok) {
+			message.style.display = 'none';
+			alert('Login successful!');
 			console.log('Login successful!');
 		} 
 		else {
-			errorMessage.style.display = 'block';
+			const errorData = await response.json();
+			message.style.display = 'block';
+			console.log(errorData.message);
+			message.textContent = errorData.message;
 		}
 
 	} 
 	catch (error) {
 		console.error('Error during login:', error);
+		message.style.display = 'block';
+		message.textContent = 'Error connecting to the server.';
 	}
 }
