@@ -53,10 +53,12 @@
 							<label class="form-check-label" for="invalidCheck2">Agree to terms and conditions</label>
 						</div>
 					</div>
-
-
-					<button class="btn btn-primary w-100 py-2 mb-3" type="submit">Sign up</button>
+					
+					<!-- type="submit" -->
+					<button class="btn btn-primary w-100 py-2 mb-3" type="button" onclick="signup();">Sign up</button>
 				</form>
+				
+				<p id="error-message" class="text-danger text-center" style="display:none;">Passwords do not match!</p>
 
 				<br><br>
 
@@ -66,8 +68,8 @@
 			</div>
 			<div class="col"></div>
 		</div>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-			
-		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+		<script src="queries.js"></script>
 	</body>
 </html>
