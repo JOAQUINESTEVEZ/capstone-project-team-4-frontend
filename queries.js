@@ -6,12 +6,17 @@ async function signup(event){
 	const passwordConfirm = document.getElementById('passConInput').value;
 	const errorMessage = document.getElementById('error-message');
 
-	if(passwordUser !== passwordConfirm){
+
+	if (!emailUser || !firstName || !lastName || !passwordUser || !passwordConfirm) {
 		errorMessage.style.display = 'block';
-		return;
+		errorMessage.innerHTML = "Please fill out all fields.";
+		return false;
 	}
-	else {
-		errorMessage.style.display = 'none';
+
+	if (passwordUser !== passwordConfirm) {
+		errorMessage.style.display = 'block';
+		errorMessage.innerHTML = "Passwords do not match.";
+		return false; // Prevent form submission
 	}
 
 	const newUser = {
