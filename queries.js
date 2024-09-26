@@ -16,7 +16,7 @@ async function signup(event){
 	if (passwordUser !== passwordConfirm) {
 		errorMessage.style.display = 'block';
 		errorMessage.innerHTML = "Passwords do not match.";
-		return false; // Prevent form submission
+		return false;
 	}
 
 	const newUser = {
@@ -57,7 +57,13 @@ async function signin(){
 	const display = document.getElementById('message').value;
 	const passInput = document.getElementById('passInput').value;
 	const emailInput = document.getElementById('emailInput').value;
-	
+
+	if (!emailInput || !passInput) {
+		message.style.display = 'block';
+		message.textContent = "Please fill out both the email and password fields.";
+		return false;
+	}
+
 	try {
 		const response = await fetch('http://127.0.0.1:5000/auth/login', {
 			method: 'POST',
