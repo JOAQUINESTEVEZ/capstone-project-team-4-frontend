@@ -30,7 +30,8 @@ Run these commands to install the EventMaster program:
 After proper installation of the program, run these commands to execute it:
 1. pip install -r requirements.txt
 2. FLASK_ENV=development python app.py
-3. You will be prompted with a local host url, click it and it will take you to our Web Application
+3. Enter 127.0.0.1:5050 into web browser.
+4. Enjoy!
 
 ## Authors
 1. Joaquin Estevez: je74@students.uwf.edu
