@@ -38,7 +38,7 @@ async function signup(event){
 		if (response.ok) {
 			errorMessage.style.display = 'none';
 			console.log('Registration successful');
-			window.location.href = "verify.html";
+			window.location.href = "verify";
 		} else {
 			const errorData = await response.json();
 			errorMessage.style.display = 'block';
