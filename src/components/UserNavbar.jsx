@@ -40,8 +40,12 @@ const UserNavbar = () => {
                             <Button variant="link" colorScheme="blue">Home</Button>
                         </Link>
 
-                        <Link href="/event" _hover={{ textDecoration: "none" }}>
-                            <Button variant="link" colorScheme="blue">Events</Button>
+                        <Link href="/create-event" _hover={{ textDecoration: "none" }}>
+                            <Button variant="link" colorScheme="blue">Create</Button>
+                        </Link>
+
+                        <Link href="/manage-event" _hover={{ textDecoration: "none" }}>
+                            <Button variant="link" colorScheme="blue">Manage</Button>
                         </Link>
                     </Flex>
 

@@ -1,7 +1,8 @@
 import {createBrowserRouter, Route, createRoutesFromElements, RouterProvider} from 'react-router-dom';
 import About from "./components/About"
 import Home from "./components/Home"
-import Event from "./components/Event"
+import CreateEvent from "./components/CreateEvent"
+import EventGrid from "./components/EventGrid.jsx"
 import RootLayout from "./layouts/RootLayout";
 
 const router = createBrowserRouter(
@@ -10,7 +11,8 @@ const router = createBrowserRouter(
         <Route path="/" element = {<RootLayout />}>
           <Route index element={<Home />}/>
           <Route path="about" element={<About />}/>
-          <Route path="event" element={<Event />}/>
+          <Route path="create-event" element={<CreateEvent />}/>
+          <Route path="manage-event" element={<EventGrid />}/>
         </Route>
     )
 )
