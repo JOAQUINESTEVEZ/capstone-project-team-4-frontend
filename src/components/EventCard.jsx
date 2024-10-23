@@ -1,5 +1,11 @@
-import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text} from "@chakra-ui/react";
+import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text} from "@chakra-ui/react";
+import InviteModal from "./InviteModal";
+
 const EventCard = ( {event} ) => {
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(event.date).toLocaleDateString(undefined, options);
+
     return <Card>
         <CardHeader>
             <Flex gap={4}>
@@ -8,11 +14,11 @@ const EventCard = ( {event} ) => {
                     <Box>
                         <Heading size = 'sm'>{event.name}</Heading>
                         <Text>{event.location}</Text>
-                        <Text>{event.date}</Text>
+                        <Text>{formattedDate}</Text>
                     </Box>
                 </Flex>
-
                 <Flex>
+                    <InviteModal event = {event} />
                 </Flex>
             </Flex>
         </CardHeader>
