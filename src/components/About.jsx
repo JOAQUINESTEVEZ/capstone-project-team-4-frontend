@@ -1,4 +1,4 @@
-import {Flex, Heading, Box, Text, Container} from "@chakra-ui/react";
+import {Flex, Heading, Box, Text, Spacer, Container, Highlight} from "@chakra-ui/react";
 
 const About = () => {
     return (
@@ -14,7 +14,7 @@ const About = () => {
                 {/* Content */}
                 <Box py={4} p={5}>
                     <Flex align="center" alignItems="center" justify="center">
-                        <Text textAlign="center" fontSize = "2xl" mr={25}>
+                        <Text textAlign="justify" fontSize="xl"  mr={25}  lineHeight="1.8" maxW="900px">
                             Managing an event is a difficult task, especially when the event has hundreds of guests.
                             Our program makes it easier to sign up for and organize events. One of the ways it makes it easier is if an event is sold out,
                             this program will automatically create a waiting list. In addition, this program will provide each guest with a unique QR code,
@@ -32,9 +32,9 @@ const About = () => {
                 </Flex>
 
                  {/* Content */}
-                 <Box py={5}>
+                 <Box py={4} p={5}>
                     <Flex align="center" alignItems="center" justify="center">
-                        <Text textAlign="center" fontSize = "2xl" mr={25}>
+                        <Text textAlign="justify" fontSize="xl"  mr={25}  lineHeight="1.8" maxW="900px">
                             The main goal for this program is to facilitate the process of signing up for an event and to manage an event.
                             Specifically, this program will provide an automatic waiting list in case an event is full. Additionally, this
                             application will give each attendee a unique QR code, which would be used as a faster way to enter an event.
