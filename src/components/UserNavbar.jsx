@@ -29,7 +29,6 @@ const UserNavbar = () => {
         <Container maxW={"900px"}>
             <Box px={4} my={4} borderRadius={5}  bg={"gray.700"}>
                 <Flex h="16"  alignItems={"center"} justifyContents={"space-between"}>
-
                     {/* Left side */}
                     <Flex
                         alignItems={"center"}
@@ -51,10 +50,8 @@ const UserNavbar = () => {
                     </Flex>
 
                     <Spacer/>
-
                     {/* Right side */}
                     <Flex alignItems={"center"} justifyContent={"center"} gap={3}>
-                        
                         <Link href="/about" _hover={{ textDecoration: "none" }}>
                             <Button variant="link" colorScheme="blue" gap={3}>About</Button>
                         </Link>

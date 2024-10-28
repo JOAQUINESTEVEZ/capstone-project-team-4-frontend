@@ -8,12 +8,19 @@ import {
   Input,
   Stack,
   Textarea,
-  useToast
+  useToast,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 import axios from "axios";
 
 const CreateEvent = () => {
+
+const { colorMode, toggleColorMode } = useColorMode();
+
+  const bg = useColorModeValue("black.100", "gray.800"); 
+  const linkColor = useColorModeValue("black", "white"); 
 
   const initialRef = React.useRef(null);
   const token = sessionStorage.getItem('sessionToken');
@@ -64,8 +71,9 @@ const CreateEvent = () => {
   };
 
     return (
+    
     <Container maxW="container.md" mt={10}>
-      <Box boxShadow="lg" p={8} borderRadius="sm" bg="gray.700">
+      <Box boxShadow="lg" p={8} borderRadius="md" bg={bg} borderWidth="1px" borderColor={useColorModeValue("gray.200", "gray.600")} >
         <Heading as="h1" size="xl" mb={6} textAlign="center">
           Create New Event
         </Heading>
