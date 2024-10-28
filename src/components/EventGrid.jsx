@@ -5,9 +5,9 @@ import {useEffect, useState} from "react";
 
 const EventGrid = () => {
 
-    const [events, setEvents] = useState([]);  // State to hold events
-    const [loading, setLoading] = useState(true);  // State for loading spinner
-    const [error, setError] = useState(null);  // State for handling errors
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // Fetch events from the backend
     useEffect(() => {
@@ -22,7 +22,7 @@ const EventGrid = () => {
                    }
                 });
 
-                setEvents(response.data); // Assuming events data is in the response
+                setEvents(response.data);
 
             } catch (err) {
                 setError("Error loading events.");
@@ -32,7 +32,7 @@ const EventGrid = () => {
         };
 
         fetchEvents();
-    }, []); // Empty dependency array means this runs once when the component mounts
+    }, []);
 
     if (loading) {
         return <Spinner size="xl" />;
