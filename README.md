@@ -2,13 +2,11 @@
 This is the repo for the front end.
 
 ## Description
-This will have all of the front end files, html and javascrypt. This is what you will see when interacting with the program.
+This will have all of the front end files, html and javascript. This is what you will see when interacting with the program.
 
 ### Dependencies
 * Before Installing the program, the user must have:
-*    Python - most recent version
-*    Flask
-*    requirements.txt
+*    node.js
 *    Tested on Windows and Linux OS, so no OS specifications. This application will run in any Python environment.
 
 ### Installing
@@ -28,9 +26,9 @@ Run these commands to install the EventMaster program:
 
 ### Executing program
 After proper installation of the program, run these commands to execute it:
-1. pip install -r requirements.txt
-2. python app.py
-3. Enter 127.0.0.1:5050 into web browser.
+1. npm install
+2. npm run dev
+3. Enter 127.0.0.1:3000 into web browser.
 4. Enjoy!
 
 ## Authors
