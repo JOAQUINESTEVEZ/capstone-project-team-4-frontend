@@ -6,7 +6,7 @@ import {
     ModalOverlay,
     useDisclosure, useToast, Text
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
 const JoinModal = ({ event }) => {

@@ -9,23 +9,19 @@ import {
   Stack,
   Textarea,
   useToast,
-  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const CreateEvent = () => {
 
-const { colorMode, toggleColorMode } = useColorMode();
-
-  const bg = useColorModeValue("black.100", "gray.800"); 
-  const linkColor = useColorModeValue("black", "white"); 
-
+  const bg = useColorModeValue("black.100", "gray.800");
   const initialRef = React.useRef(null);
   const token = sessionStorage.getItem('sessionToken');
-
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -57,6 +53,8 @@ const { colorMode, toggleColorMode } = useColorMode();
         isClosable: true,
         position: "top",
       })
+
+      navigate('/manage-event');
 
     } catch (error) {
         toast({

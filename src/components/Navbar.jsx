@@ -41,7 +41,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
 
-                <Link href="/about" _hover={{ textDecoration: "none" }}>
+                <Link href="/src/pages/About" _hover={{ textDecoration: "none" }}>
                   <Button variant="link" color={linkColor}>
                     About
                   </Button>
