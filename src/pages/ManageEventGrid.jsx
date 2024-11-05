@@ -61,7 +61,7 @@ const ManageEventGrid = () => {
 
     return (
         <Container maxW={"1200px"} my={4}>
-                        {events.length === 0 ? (
+            {events.length === 0 ? (
                 <Flex justify="center" align="center" height="50vh">
                     <Text fontSize="xl" color="gray.500">
                         No events found 🙁

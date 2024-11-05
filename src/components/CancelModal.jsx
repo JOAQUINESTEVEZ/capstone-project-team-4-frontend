@@ -74,10 +74,10 @@ const CancelModal = ({ event }) => {
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme="red" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
-                            Cancel
+                            Yes
                         </Button>
-                        <Button onClick={onClose} ml={3}>
-                            Cancel
+                        <Button colorScheme="blue" onClick={onClose} ml={3}>
+                            No
                         </Button>
                     </ModalFooter>
                 </ModalContent>

@@ -63,7 +63,7 @@ const InviteModal = ({ event }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>Send invites</Button>
+      <Button colorScheme="blue" onClick={onOpen}>Send Invites</Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -91,10 +91,12 @@ const InviteModal = ({ event }) => {
 
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
-              Send
+            <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+                Send
             </Button>
-            <Button onClick={onClose}>cancel</Button>
+            <Button colorScheme="red" onClick={onClose}>
+                cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -6,7 +6,7 @@ import {
     ModalOverlay,
     useDisclosure, useToast, Text
 } from "@chakra-ui/react";
-import React, {useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 
 const JoinModal = ({ event }) => {
@@ -59,7 +59,7 @@ const JoinModal = ({ event }) => {
 
     return (
         <>
-            <Button onClick={onOpen}>Join Event</Button>
+            <Button colorScheme="blue" onClick={onOpen}>Join Event</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -70,10 +70,10 @@ const JoinModal = ({ event }) => {
                         <Text>Would you like to join this event?</Text>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="green" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
+                        <Button colorScheme="blue" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
                             Register
                         </Button>
-                        <Button onClick={onClose} ml={3}>
+                        <Button colorScheme="red" onClick={onClose} ml={3}>
                             Cancel
                         </Button>
                     </ModalFooter>

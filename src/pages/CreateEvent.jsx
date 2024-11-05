@@ -137,7 +137,7 @@ const CreateEvent = () => {
             </FormControl>
 
             {/* Submit Button */}
-            <Button colorScheme="teal" type="submit" size="lg" onClick={handleSubmit}>
+            <Button colorScheme="blue" type="submit" size="lg" onClick={handleSubmit}>
               Create Event
             </Button>
           </Stack>
