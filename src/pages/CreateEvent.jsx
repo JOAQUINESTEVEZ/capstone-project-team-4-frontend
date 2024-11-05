@@ -11,9 +11,9 @@ import {
   useToast,
   useColorModeValue,
 } from "@chakra-ui/react";
+import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 
 const CreateEvent = () => {
 
@@ -45,9 +45,11 @@ const CreateEvent = () => {
         }
       });
 
+      const message = response.data.message;
+
       toast({
         title: "Create event success",
-        description: "Event successfully made",
+        description: message,
         status: "success",
         duration: 40000,
         isClosable: true,

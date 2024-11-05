@@ -1,8 +1,8 @@
 import {createBrowserRouter, Route, createRoutesFromElements, RouterProvider} from 'react-router-dom';
-import About from "./pages/About.jsx"
-import Home from "./pages/Home.jsx"
-import CreateEvent from "./pages/CreateEvent.jsx"
-import ManageEventGrid from "./pages/ManageEventGrid.jsx"
+import About from "./pages/About.jsx";
+import Home from "./pages/Home.jsx";
+import CreateEvent from "./pages/CreateEvent.jsx";
+import ManageEventGrid from "./pages/ManageEventGrid.jsx";
 import EventListGrid from "./pages/EventListGrid.jsx";
 import RootLayout from "./layouts/RootLayout";
 

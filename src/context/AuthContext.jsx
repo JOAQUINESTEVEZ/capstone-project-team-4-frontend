@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Hook to use the auth state
 export const useAuth = () => {
   return useContext(AuthContext);
 };

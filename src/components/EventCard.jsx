@@ -1,6 +1,7 @@
 import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text} from "@chakra-ui/react";
-import InviteModal from "./InviteModal";
-import JoinModal from "./JoinModal";
+import InviteModal from "./InviteModal.jsx";
+import JoinModal from "./JoinModal.jsx";
+import CancelModal from "./CancelModal.jsx";
 
 const EventCard = ({ event, user}) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -29,6 +30,12 @@ const EventCard = ({ event, user}) => {
                         {user === event.host_id && (
                             <InviteModal event={event} />
                         )}
+
+                        {/* cancel modal */}
+                        {user === event.host_id && (
+                            <CancelModal event={event} />
+                        )}
+
                     </Flex>
                 </Flex>
             </CardHeader>

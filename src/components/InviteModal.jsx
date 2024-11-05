@@ -36,9 +36,11 @@ const InviteModal = ({ event }) => {
         }
       });
 
+      const message = response.data.message;
+
       toast({
         title: "Invite sent",
-        description: "Invite sent",
+        description: message,
         status: "success",
         duration: 4000,
         isClosable: true,

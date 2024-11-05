@@ -61,18 +61,26 @@ const ManageEventGrid = () => {
 
     return (
         <Container maxW={"1200px"} my={4}>
-            <Grid
-                templateColumns={{
-                    base: "1fr",
-                    md: "repeat(2, 1fr)",
-                    lg: "repeat(3, 1fr)",
-                }}
-                gap={4}
-            >
-                {events.map((event) => (
-                    <EventCard key={event.id} event={event} user={currentUser.user_id}/>
-                ))}
-            </Grid>
+                        {events.length === 0 ? (
+                <Flex justify="center" align="center" height="50vh">
+                    <Text fontSize="xl" color="gray.500">
+                        No events found 🙁
+                    </Text>
+                </Flex>
+            ) : (
+                <Grid
+                    templateColumns={{
+                        base: "1fr",
+                        md: "repeat(2, 1fr)",
+                        lg: "repeat(3, 1fr)",
+                    }}
+                    gap={4}
+                >
+                    {events.map((event) => (
+                        <EventCard key={event.id} event={event} user={currentUser.user_id} />
+                    ))}
+                </Grid>
+            )}
         </Container>
     );
 };

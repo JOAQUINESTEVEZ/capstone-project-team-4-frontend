@@ -75,18 +75,18 @@ const UserNavbar = () => {
 								</Link>
 
 								{/* about tab */}
-								<Link href="/src/pages/About" _hover={{ textDecoration: "none" }}>
+								<Link href="/about" _hover={{ textDecoration: "none" }}>
 									<Button variant="ghost" color={"blue.200"} >
 										About
 									</Button>
 								</Link>
-
 							</Flex>
 
 							<Spacer />
 
 							{/* Right Side Elements */}
 							<Flex gap={3} alignItems="center">
+
 								{/* Theme Toggle Button */}
 								<Button onClick={toggleColorMode} variant="ghost">
 									{colorMode === "light" ? "🌙" : "☀️"}
