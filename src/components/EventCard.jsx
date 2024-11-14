@@ -2,6 +2,7 @@ import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text} from "@cha
 import InviteModal from "./InviteModal.jsx";
 import JoinModal from "./JoinModal.jsx";
 import CancelModal from "./CancelModal.jsx";
+import ManageModal from "./ManageModal";
 
 const EventCard = ({ event, user}) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -33,7 +34,7 @@ const EventCard = ({ event, user}) => {
 
                         {/* cancel modal */}
                         {user === event.host_id && (
-                            <CancelModal event={event} />
+                            <ManageModal key={event.id} event={event} user={user.user_id}/>
                         )}
 
                     </Flex>
