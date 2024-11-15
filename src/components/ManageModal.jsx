@@ -1,9 +1,11 @@
 import {
-	Button, Flex, Modal, ModalBody,
+	Button, Flex, Modal, ModalBody, Grid,
 	ModalCloseButton, ModalContent, ModalFooter,
 	ModalHeader, ModalOverlay, useDisclosure
 } from "@chakra-ui/react";
 import CancelModal from "./CancelModal.jsx";
+import StatCard from "./StatCard.jsx";
+import StatisticBox from "./GraphCard.jsx"
 import { VictoryPie } from 'victory';
 import React from "react";
 
@@ -25,13 +27,25 @@ const ManageModal = ({ event, user}) => {
 	//This is where will put the number of people in the waitlist!
 	const waitlist = 0;
 	
+	//This is the number of acepted invites
+	const acceptedInvites = 21;
+	
+	//This is the number of invites sent
+	const sentInvites = 32;
+	
 	
 	const name = event.name;
 	const percentage = (progress / total) * 100;
+	const percentageInvites = (acceptedInvites / sentInvites) * 100;
 
 	const data = [
 		{ x: 'Progress', y: percentage },
 		{ x: 'Remaining', y: 100 - percentage },
+	];
+	
+	const invitesData = [
+		{ x: 'Progress', y: percentageInvites },
+		{ x: 'Remaining', y: 100 - percentageInvites }
 	];
 
 	return (
@@ -47,46 +61,52 @@ const ManageModal = ({ event, user}) => {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-					<ModalContent maxW="700px">
+				<ModalContent maxW="1015px"  justifyContent="center" 
+							alignItems="center">
 						<ModalHeader>Manage Event</ModalHeader>
 					<ModalCloseButton />
 					
 					<ModalBody pb={5}>
 
-					<div>
-						<ul style={{ listStyleType: 'none', padding: 0 }}>
-							<li><strong>Event Name:</strong> {name}</li>
-							<li><strong>Attendies:</strong>
-								<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh' }}>
-									<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh' }}>
-										<VictoryPie
-											data={data}
-											innerRadius={120}  // Inner radius to create a "donut" chart
-											padding={50}
-											style={{
-												data: {
-													fill: ({ datum }) => (datum.x === 'Progress' ? '#4caf50' : '#d3d3d3'),
-												},
-											}}
-										labelComponent={null} 
-										animate={{ duration: 500 }}
-									/>
-									
-										<div style={{ position: 'absolute', fontSize: '24px', fontWeight: 'bold' }}>
-											{progress}/{total}
-										</div>
-									</div>
-								</div>
-							</li>
-							<li><strong>People In Waitlist:</strong> {waitlist}</li>
-							<li><strong>Event Date:</strong> {date}</li>
-							<li><strong>Location:</strong> {event.location}</li>
-							<li><strong>Description:</strong> {event.description || 'No description available.'}</li>
-						</ul>
-					</div>
+							
+						<Grid
+							templateColumns={{
+								base: "1fr",
+								md: "repeat(3, 1fr)",
+								lg: "repeat(3, 1fr)",
+							}}
+							gap={5}
+							justifyContent="center"  
+							alignItems="center"    
+							mx="auto"   
+						>
+							<StatCard Title="Event Name" Content={name}/>
+							
+							<StatCard Title="Event Date" Content={date}/>
+							<StatCard Title="Location" Content={event.location}/>
+							
+							<StatCard Title="People In Waitlist" Content={waitlist}/>
+							
+							<StatisticBox 
+								Title="Attendees" 
+								data={data} 
+								progress={progress} 
+								total={total} 
+							/>
+								
+							<StatisticBox 
+								Title="Accepted Invites / Invites Sent" 
+								data={invitesData} 
+								progress={acceptedInvites} 
+								total={sentInvites} 
+							/>
+							
+						</Grid>
+							
+						
 					</ModalBody>
 					  
-					<ModalFooter>
+					<ModalFooter >
 						{/* Send and Close buttons to the right */}
 						<Flex ml="auto">
 							{/* Cancel Event button */}
