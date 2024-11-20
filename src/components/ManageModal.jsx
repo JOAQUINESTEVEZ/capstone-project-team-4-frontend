@@ -19,34 +19,20 @@ const ManageModal = ({ event, user}) => {
 
 
 	const total = event.capacity;
-	
-	
-	//This is where we will put the amount of users.
-	const progress = 111;
-	
-	//This is where will put the number of people in the waitlist!
-	const waitlist = 0;
-	
-	//This is the number of acepted invites
-	const acceptedInvites = 21;
-	
-	//This is the number of invites sent
-	const sentInvites = 32;
+	const progress =event.roles.length;
+	const waitlist = event.waitlist.length;
+	const sentInvites = event.invitations.length;
 	
 	
 	const name = event.name;
 	const percentage = (progress / total) * 100;
-	const percentageInvites = (acceptedInvites / sentInvites) * 100;
 
 	const data = [
 		{ x: 'Progress', y: percentage },
 		{ x: 'Remaining', y: 100 - percentage },
 	];
 	
-	const invitesData = [
-		{ x: 'Progress', y: percentageInvites },
-		{ x: 'Remaining', y: 100 - percentageInvites }
-	];
+
 
 	return (
 		<>
@@ -93,13 +79,9 @@ const ManageModal = ({ event, user}) => {
 								progress={progress} 
 								total={total} 
 							/>
-								
-							<StatisticBox 
-								Title="Accepted Invites / Invites Sent" 
-								data={invitesData} 
-								progress={acceptedInvites} 
-								total={sentInvites} 
-							/>
+							
+							<StatCard Title="Unaccepted Invites" Content={sentInvites}/>
+							
 							
 						</Grid>
 							
