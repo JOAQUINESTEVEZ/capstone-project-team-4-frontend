@@ -17,7 +17,7 @@ const CancelModal = ({ event }) => {
 
     const handleRegister = async () => {
         setIsSubmitting(true);
-        const token = sessionStorage.getItem('sessionToken');
+        const token = localStorage.getItem('token');
 
         try {
             const response = await axios.post(

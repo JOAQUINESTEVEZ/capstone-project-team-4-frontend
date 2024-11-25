@@ -15,7 +15,7 @@ const getUserFromToken = (token) => {
     }
 };
 const ManageEventGrid = () => {
-    const sessionToken = sessionStorage.getItem('sessionToken');
+    const sessionToken = localStorage.getItem('token');
     const currentUser = getUserFromToken(sessionToken);
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const ManageEventGrid = () => {
     // Fetch events from the backend
     useEffect(() => {
 
-        const token = sessionStorage.getItem('sessionToken');
+        const token = localStorage.getItem('token');
         const fetchEvents = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/events/", {
@@ -64,7 +64,7 @@ const ManageEventGrid = () => {
             {events.length === 0 ? (
                 <Flex justify="center" align="center" height="50vh">
                     <Text fontSize="xl" color="gray.500">
-                        No events found 🙁
+                        No Events Found 🙁
                     </Text>
                 </Flex>
             ) : (

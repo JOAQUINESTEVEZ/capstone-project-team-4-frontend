@@ -26,7 +26,7 @@ const InviteModal = ({ event }) => {
   };
   const handleSubmit = async() => {
 
-  const token = sessionStorage.getItem('sessionToken');
+  const token = localStorage.getItem('token');
 
   try{
       const response = await axios.post("http://localhost:5000/events/" + event.id +"/invite", formData, {
