@@ -77,7 +77,7 @@ const ManageEventGrid = () => {
                     gap={4}
                 >
                     {events.map((event) => (
-                        <EventCard key={event.id} event={event} user={currentUser.user_id} />
+                        <EventCard key={event.id} hostToken={sessionToken} event={event} user={currentUser.user_id} />
                     ))}
                 </Grid>
             )}

@@ -14,7 +14,7 @@ const StatisticBox = ({ Title, data, progress, total }) => {
 			boxShadow="md"
 			padding="30px"
 			textAlign="center"
-			width="300px"
+			width="470px"
 			height="300px"// Increased height to fit content better
 			display="flex"
 			flexDirection="column"
