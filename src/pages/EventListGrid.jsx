@@ -1,10 +1,22 @@
-import EventCard from "./EventCard";
-import {Container, Grid, Spinner, Text} from "@chakra-ui/react";
+import EventCard from "../components/EventCard.jsx";
+import {Container, Flex, Grid, Spinner, Text} from "@chakra-ui/react";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {jwtDecode} from "jwt-decode";
 
-const EventGrid = () => {
-
+const getUserFromToken = (token) => {
+    if (!token) return null;
+    try {
+        const decoded = jwtDecode(token);
+        return { user_id: decoded.sub };
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+const ManageEventGrid = () => {
+    const sessionToken = sessionStorage.getItem('sessionToken');
+    const currentUser = getUserFromToken(sessionToken);
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -22,7 +34,8 @@ const EventGrid = () => {
                    }
                 });
 
-                setEvents(response.data);
+                const userEvents = response.data.filter(event => event.host_id !== currentUser.user_id);
+                setEvents(userEvents);
 
             } catch (err) {
                 setError("Error loading events.");
@@ -35,7 +48,11 @@ const EventGrid = () => {
     }, []);
 
     if (loading) {
-        return <Spinner size="xl" />;
+          return (
+            <Flex justify="center" align="center" height="100vh">
+                <Spinner size="xl" />
+            </Flex>
+        );
     }
 
     if (error) {
@@ -53,10 +70,10 @@ const EventGrid = () => {
                 gap={4}
             >
                 {events.map((event) => (
-                    <EventCard key={event.id} event={event} />
+                    <EventCard key={event.id} event={event} user={currentUser.user_id}/>
                 ))}
             </Grid>
         </Container>
     );
 };
-export default EventGrid
+export default ManageEventGrid

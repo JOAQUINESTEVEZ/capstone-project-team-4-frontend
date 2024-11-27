@@ -6,12 +6,13 @@ import {
     ModalOverlay,
     useDisclosure, useToast, Text
 } from "@chakra-ui/react";
-import {useState} from "react";
 import axios from "axios";
+import {useState} from "react";
 
-const JoinModal = ({ event }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+const CancelModal = ({ event }) => {
+
     const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleRegister = async () => {
@@ -20,7 +21,7 @@ const JoinModal = ({ event }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${event.id}/register`,
+                `http://localhost:5000/events/${event.id}/cancel`,
                 {},
                 {
                     headers: {
@@ -34,7 +35,7 @@ const JoinModal = ({ event }) => {
             const isSuccess = response.status === 200;
 
             toast({
-                title: isSuccess ? "Registration successful" : "Registration failed",
+                title: isSuccess ? "Cancellation successful" : "Cancellation failed",
                 description: message,
                 status: isSuccess ? "success" : "error",
                 duration: 4000,
@@ -42,10 +43,12 @@ const JoinModal = ({ event }) => {
                 position: "top",
             });
 
+            window.location.reload();
+
             if (isSuccess) onClose();
         } catch (error) {
             toast({
-                title: "Registration failed",
+                title: "Cancellation failed",
                 description: error.response?.data?.message || "An error occurred",
                 status: "error",
                 duration: 4000,
@@ -59,22 +62,22 @@ const JoinModal = ({ event }) => {
 
     return (
         <>
-            <Button colorScheme="blue" onClick={onOpen}>Join Event</Button>
+            <Button colorScheme="red" onClick={onOpen}>Cancel Event</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent maxW="500px">
-                    <ModalHeader>Join Event</ModalHeader>
+                    <ModalHeader>Cancel Event</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={5}>
-                        <Text>Would you like to join this event?</Text>
+                        <Text>Are you sure you like to cancel this event?</Text>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
-                            Register
+                        <Button colorScheme="red" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
+                            Yes
                         </Button>
-                        <Button colorScheme="red" onClick={onClose} ml={3}>
-                            Cancel
+                        <Button colorScheme="blue" onClick={onClose} ml={3}>
+                            No
                         </Button>
                     </ModalFooter>
                 </ModalContent>
@@ -83,4 +86,4 @@ const JoinModal = ({ event }) => {
     );
 };
 
-export default JoinModal;
+export default CancelModal;

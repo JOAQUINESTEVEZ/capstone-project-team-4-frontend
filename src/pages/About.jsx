@@ -1,4 +1,4 @@
-import {Flex, Heading, Box, Text, Spacer, Container, Highlight} from "@chakra-ui/react";
+import {Flex, Heading, Box, Text, Container} from "@chakra-ui/react";
 
 const About = () => {
     return (

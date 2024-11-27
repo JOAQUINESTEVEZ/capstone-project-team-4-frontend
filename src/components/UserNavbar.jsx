@@ -4,8 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const UserNavbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
-	const bg = useColorModeValue("black.100", "gray.800"); 
-	const linkColor = useColorModeValue("black", "white"); // Dynamically set link color
+	const bg = useColorModeValue("black.100", "gray.800");
 	const { setIsAuthenticated } = useAuth();
 	const navigate = useNavigate();
 	const toast = useToast()
@@ -46,21 +45,39 @@ const UserNavbar = () => {
 							{/* Left Side Links */}
 							<Flex alignItems="center" gap={3} display={{ base: "none", sm: "flex" }}>
 								<h1>Event Master</h1>
+
+								{/* home tab */}
 								<Link href="/" _hover={{ textDecoration: "none" }}>
-									<Button variant="link" color={linkColor}>
+									<Button variant="ghost" color={"blue.200"}>
 										Home
 									</Button>
 								</Link>
 
+								{/* create-event tab */}
 								<Link href="/create-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="link" color={linkColor}>
-										Create
+									<Button variant="ghost" color={"blue.200"}>
+										Create Event
 									</Button>
 								</Link>
 
+								{/* manage-event tab */}
 								<Link href="/manage-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="link" color={linkColor}>
-										Manage
+									<Button variant="ghost" color={"blue.200"}>
+										Manage Event
+									</Button>
+								</Link>
+
+								{/* events-list tab */}
+								<Link href="/event-list" _hover={{ textDecoration: "none" }}>
+									<Button variant="ghost" color={"blue.200"} >
+										Event List
+									</Button>
+								</Link>
+
+								{/* about tab */}
+								<Link href="/about" _hover={{ textDecoration: "none" }}>
+									<Button variant="ghost" color={"blue.200"} >
+										About
 									</Button>
 								</Link>
 							</Flex>
@@ -69,6 +86,7 @@ const UserNavbar = () => {
 
 							{/* Right Side Elements */}
 							<Flex gap={3} alignItems="center">
+
 								{/* Theme Toggle Button */}
 								<Button onClick={toggleColorMode} variant="ghost">
 									{colorMode === "light" ? "🌙" : "☀️"}

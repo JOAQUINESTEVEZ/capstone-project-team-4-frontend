@@ -1,8 +1,10 @@
-import { Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
-import InviteModal from "./InviteModal";
-import JoinModal from "./JoinModal";
+import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text} from "@chakra-ui/react";
+import InviteModal from "./InviteModal.jsx";
+import JoinModal from "./JoinModal.jsx";
+import CancelModal from "./CancelModal.jsx";
+import ManageModal from "./ManageModal";
 
-const EventCard = ({ event, currentUser }) => {
+const EventCard = ({ event, user}) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(event.date).toLocaleDateString(undefined, options);
 
@@ -19,8 +21,22 @@ const EventCard = ({ event, currentUser }) => {
                         </Box>
                     </Flex>
                     <Flex direction="column" width="125px" gap={2}>
-                        <JoinModal event={event} />
-                        <InviteModal event={event} />
+
+                        {/* join modal */}
+                        {user !== event.host_id && (
+                            <JoinModal event={event} />
+                        )}
+
+                        {/* invite modal */}
+                        {user === event.host_id && (
+                            <InviteModal event={event} />
+                        )}
+
+                        {/* cancel modal */}
+                        {user === event.host_id && (
+                            <ManageModal key={event.id} event={event} user={user.user_id}/>
+                        )}
+
                     </Flex>
                 </Flex>
             </CardHeader>
@@ -32,5 +48,4 @@ const EventCard = ({ event, currentUser }) => {
         </Card>
     );
 };
-
 export default EventCard;

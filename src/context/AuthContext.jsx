@@ -4,16 +4,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);  // Add loading state
+  const [loading, setLoading] = useState(true);
 
-  // Check for token in sessionStorage on initial load
   useEffect(() => {
-    const token = sessionStorage.getItem('sessionToken');  // Check localStorage for token
+    const token = sessionStorage.getItem('sessionToken');
 
     if (token) {
-      setIsAuthenticated(true);  // If token exists, mark as authenticated
+      setIsAuthenticated(true);
     }
-    setLoading(false);  // Once checked, turn off loading
+    setLoading(false);
   }, []);
 
   return (
@@ -23,7 +22,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Hook to use the auth state
 export const useAuth = () => {
   return useContext(AuthContext);
 };

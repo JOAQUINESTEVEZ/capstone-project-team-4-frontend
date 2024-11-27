@@ -9,23 +9,19 @@ import {
   Stack,
   Textarea,
   useToast,
-  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
 
 const CreateEvent = () => {
 
-const { colorMode, toggleColorMode } = useColorMode();
-
-  const bg = useColorModeValue("black.100", "gray.800"); 
-  const linkColor = useColorModeValue("black", "white"); 
-
+  const bg = useColorModeValue("black.100", "gray.800");
   const initialRef = React.useRef(null);
   const token = sessionStorage.getItem('sessionToken');
-
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -49,14 +45,18 @@ const { colorMode, toggleColorMode } = useColorMode();
         }
       });
 
+      const message = response.data.message;
+
       toast({
         title: "Create event success",
-        description: "Event successfully made",
+        description: message,
         status: "success",
         duration: 40000,
         isClosable: true,
         position: "top",
       })
+
+      navigate('/manage-event');
 
     } catch (error) {
         toast({
@@ -137,7 +137,7 @@ const { colorMode, toggleColorMode } = useColorMode();
             </FormControl>
 
             {/* Submit Button */}
-            <Button colorScheme="teal" type="submit" size="lg" onClick={handleSubmit}>
+            <Button colorScheme="blue" type="submit" size="lg" onClick={handleSubmit}>
               Create Event
             </Button>
           </Stack>
