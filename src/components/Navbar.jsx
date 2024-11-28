@@ -15,7 +15,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   // Theme-based colors for background and text
-  const bg = useColorModeValue("black.100", "gray.800"); 
+  const bg = useColorModeValue("white", "gray.800"); 
   const linkColor = useColorModeValue("black", "white"); // Dynamically set link color
 
   return (
