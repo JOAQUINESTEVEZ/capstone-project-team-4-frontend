@@ -6,10 +6,11 @@ import {useNavigate} from "react-router-dom";
 
 const UserNavbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
-	const bg = useColorModeValue("black.100", "gray.800");
+	const bg = useColorModeValue("white", "gray.800");
 	const { setIsAuthenticated } = useAuth();
 	const navigate = useNavigate();
 	const toast = useToast()
+	const linkColor = useColorModeValue("black", "white"); 
 
 	const handleSignOut = () => {
 
@@ -50,14 +51,14 @@ const UserNavbar = () => {
 
 								{/* home tab */}
 								<Link href="/" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" colorScheme={"blue.200"}>
+									<Button variant="ghost" color={linkColor}>
 										Home
 									</Button>
 								</Link>
 
 								{/* create-event tab */}
 								<Link href="/create-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" colorScheme={"blue.200"}>
+									<Button variant="ghost" color={linkColor}>
 										Create Event
 									</Button>
 								</Link>
@@ -67,7 +68,7 @@ const UserNavbar = () => {
 									<MenuButton
 										as={Button}
 										variant="ghost"
-										colorScheme={"blue.200"}
+										colorScheme={linkColor}
 										rightIcon={"🔽"}
 									>
 										Manage Event
@@ -87,7 +88,7 @@ const UserNavbar = () => {
 
 								{/* events-list tab */}
 								<Link href="/event-list" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" colorScheme={"blue.200"} >
+									<Button variant="ghost" color={linkColor} >
 										Event List
 									</Button>
 								</Link>
@@ -102,6 +103,7 @@ const UserNavbar = () => {
 								{/* about tab */}
 								<Link href="/about" _hover={{ textDecoration: "none" }}>
 									<Button variant="ghost" ccolorScheme={"blue.200"} >
+
 										About
 									</Button>
 								</Link>

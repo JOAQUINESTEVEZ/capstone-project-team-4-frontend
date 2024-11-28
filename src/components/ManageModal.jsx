@@ -66,27 +66,52 @@ const ManageModal = ({ hostToken, event, user}) => {
 	};
 
 	const handleQRVerification = async (url) => {
+		const urlPattern = /^http:\/\/.+\/events\/\d+\/verify_qrcode\?attendee_id=\d+$/;
+
+		if (!urlPattern.test(url)) {
+			toast({
+				title: "Invalid QR Code",
+				description: "The scanned QR code does not match the expected format.",
+				status: "error",
+				duration: 4000,
+				isClosable: true,
+				position: "top",
+			});
+			return;
+		}
+
 		try {
 			const token = sessionStorage.getItem('sessionToken');
 			const response = await fetch(url, {
 				method: 'GET',
 				headers: {
-					'Authorization': `Bearer ${token}`, 
-					'Content-Type': "application/json", // Ensure format matches backend expectation
+					'Authorization': `Bearer ${token}`,
+					'Content-Type': "application/json",
 				},
 			});
 
-		toast({
-			title: response.ok ? "Success" : "Error",
-			description: response.message || (response.ok ? 'QR scan successful' : 'QR scan failed'),
-			status: response.ok ? "success" : "error",
-			duration: 4000,
-			isClosable: true,
-			position: "top",
-		});
+			const responseData = await response.json();
 
+			toast({
+				title: response.ok ? "Success" : "Error",
+				description: response.ok 
+					? 'QR scan successful' 
+					: responseData.message || 'QR scan failed',
+				status: response.ok ? "success" : "error",
+				duration: 4000,
+				isClosable: true,
+				position: "top",
+			});
 		} catch (error) {
 			console.error('Verification Error:', error);
+			toast({
+				title: "Error",
+				description: "An error occurred during verification.",
+				status: "error",
+				duration: 4000,
+				isClosable: true,
+				position: "top",
+			});
 		}
 	};
 
@@ -203,7 +228,7 @@ const ManageModal = ({ hostToken, event, user}) => {
 								<StatisticBox 
 									Title="Acepted Invites / Total Invites" 
 									data={dataInvites} 
-									progress={accepted} 
+									progress={acceptedCount} 
 									total={sentInvites} 
 								/>
 							</Grid>
