@@ -13,7 +13,7 @@ import jsQR from 'jsqr';
 
 
 const ManageModal = ({ hostToken, event, user}) => {
-	const sessionToken = sessionStorage.getItem('sessionToken');
+	const token = localStorage.getItem('token');
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = React.useRef(null)
@@ -81,14 +81,14 @@ const ManageModal = ({ hostToken, event, user}) => {
 		}
 
 		try {
-			const token = sessionStorage.getItem('sessionToken');
+			
 			const response = await fetch(url, {
 				method: 'GET',
 				headers: {
-					'Authorization': `Bearer ${token}`,
-					'Content-Type': "application/json",
+				  'Authorization': `Bearer ${token}`,
+				  'Content-Type': 'application/json',
 				},
-			});
+			  });
 
 			const responseData = await response.json();
 
