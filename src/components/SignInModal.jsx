@@ -34,7 +34,7 @@ const SignInModal = () => {
       const response = await axios.post("http://localhost:5000/auth/login", formData);
       const token = response.data.token;
 
-      sessionStorage.setItem('sessionToken', token);
+      localStorage.setItem('token', token);
 
       setIsAuthenticated(true);
 

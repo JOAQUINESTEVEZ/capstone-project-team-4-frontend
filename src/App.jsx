@@ -5,6 +5,8 @@ import CreateEvent from "./pages/CreateEvent.jsx";
 import ManageEventGrid from "./pages/ManageEventGrid.jsx";
 import EventListGrid from "./pages/EventListGrid.jsx";
 import RootLayout from "./layouts/RootLayout";
+import InvitationGrid from "./pages/InvitationGrid.jsx";
+import JoinedEventList from "./pages/JoinedEventList.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,6 +17,8 @@ const router = createBrowserRouter(
           <Route path="create-event" element={<CreateEvent />}/>
           <Route path="manage-event" element={<ManageEventGrid />}/>
           <Route path="event-list" element={<EventListGrid />}/>
+          <Route path="invitations" element={<InvitationGrid />}/>
+          <Route path="joined-event" element={<JoinedEventList />}/>
         </Route>
     )
 )

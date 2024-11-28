@@ -6,15 +6,15 @@ import {
     ModalOverlay,
     useDisclosure, useToast, Text
 } from "@chakra-ui/react";
-import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 import axios from "axios";
 
-const JoinModal = ({ event }) => {
+const AcceptInviteModal = ({ invites }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
-     const navigate = useNavigate();
+      const navigate = useNavigate();
 
     const handleRegister = async () => {
         setIsSubmitting(true);
@@ -22,7 +22,7 @@ const JoinModal = ({ event }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${event.id}/register`,
+                `http://localhost:5000/events/${invites.event_id}/rsvp?invitation_id=${invites.id}&answer=yes`,
                 {},
                 {
                     headers: {
@@ -36,7 +36,7 @@ const JoinModal = ({ event }) => {
             const isSuccess = response.status === 200;
 
             toast({
-                title: isSuccess ? "Registration successful" : "Registration failed",
+                title: isSuccess ? "Responded to the invitation" : "Response failed",
                 description: message,
                 status: isSuccess ? "success" : "error",
                 duration: 4000,
@@ -44,13 +44,11 @@ const JoinModal = ({ event }) => {
                 position: "top",
             });
 
-            if (isSuccess) {
-                onClose();
-                navigate('/joined-event');
-            }
+            navigate('/invitations');
+
         } catch (error) {
             toast({
-                title: "Registration failed",
+                title: "Response failed",
                 description: error.response?.data?.message || "An error occurred",
                 status: "error",
                 duration: 4000,
@@ -64,19 +62,18 @@ const JoinModal = ({ event }) => {
 
     return (
         <>
-            <Button colorScheme="blue" onClick={onOpen}>Join Event</Button>
-
+            <Button colorScheme="blue" onClick={onOpen}>Accept</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent maxW="500px">
-                    <ModalHeader>Join Event</ModalHeader>
+                    <ModalHeader>Invitation for {invites.event_name} </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={5}>
-                        <Text>Would you like to join this event?</Text>
+                        <Text>Would you like to accept this invite?</Text>
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme="blue" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
-                            Register
+                            Yes, I will attend
                         </Button>
                         <Button colorScheme="red" onClick={onClose} ml={3}>
                             Cancel
@@ -88,4 +85,4 @@ const JoinModal = ({ event }) => {
     );
 };
 
-export default JoinModal;
+export default AcceptInviteModal;

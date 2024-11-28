@@ -1,4 +1,6 @@
-import { Box, Button, Container, Flex, Link, Spacer, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
+import {
+	Box, Button, Container, Flex, Link, Spacer, useColorMode, useColorModeValue, useToast, Menu, MenuButton, MenuList, MenuItem, MenuDivider,
+} from "@chakra-ui/react";
 import { useAuth } from "../context/AuthContext";
 import {useNavigate} from "react-router-dom";
 
@@ -62,11 +64,27 @@ const UserNavbar = () => {
 								</Link>
 
 								{/* manage-event tab */}
-								<Link href="/manage-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={linkColor}>
+								<Menu>
+									<MenuButton
+										as={Button}
+										variant="ghost"
+										colorScheme={linkColor}
+										rightIcon={"🔽"}
+									>
 										Manage Event
-									</Button>
-								</Link>
+									</MenuButton>
+									<MenuList>
+										<MenuItem as={Link} href="/manage-event">
+											Events Created
+										</MenuItem>
+
+										<MenuDivider />
+
+										<MenuItem as={Link} href="/joined-event">
+											Events Joined
+										</MenuItem>
+									</MenuList>
+								</Menu>
 
 								{/* events-list tab */}
 								<Link href="/event-list" _hover={{ textDecoration: "none" }}>
@@ -75,9 +93,17 @@ const UserNavbar = () => {
 									</Button>
 								</Link>
 
+								{/* invitations-list tab */}
+								<Link href="/invitations" _hover={{ textDecoration: "none" }}>
+									<Button variant="ghost" colorScheme={"blue.200"} >
+										Invitations
+									</Button>
+								</Link>
+
 								{/* about tab */}
 								<Link href="/about" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={linkColor}>
+									<Button variant="ghost" ccolorScheme={"blue.200"} >
+
 										About
 									</Button>
 								</Link>
