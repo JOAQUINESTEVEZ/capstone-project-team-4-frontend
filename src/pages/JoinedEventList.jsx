@@ -3,6 +3,7 @@ import {Container, Flex, Grid, Spinner, Text} from "@chakra-ui/react";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {jwtDecode} from "jwt-decode";
+import JoinedEventCard from "../components/JoinedEventCard.jsx";
 
 const getUserFromToken = (token) => {
     if (!token) return null;
@@ -14,7 +15,7 @@ const getUserFromToken = (token) => {
         return null;
     }
 };
-const EventListGrid = () => {
+const ManageEventGrid = () => {
     const sessionToken = localStorage.getItem('token');
     const currentUser = getUserFromToken(sessionToken);
     const [events, setEvents] = useState([]);
@@ -34,7 +35,8 @@ const EventListGrid = () => {
                    }
                 });
 
-                const userEvents = response.data.filter(event => event.host_id !== currentUser.user_id);
+                const userEvents = response.data.filter(event => event.roles.some(role => role.user_id === currentUser.user_id)
+                );
                 setEvents(userEvents);
 
             } catch (err) {
@@ -48,7 +50,7 @@ const EventListGrid = () => {
     }, []);
 
     if (loading) {
-          return (
+       return (
             <Flex justify="center" align="center" height="100vh">
                 <Spinner size="xl" />
             </Flex>
@@ -61,19 +63,27 @@ const EventListGrid = () => {
 
     return (
         <Container maxW={"1200px"} my={4}>
-            <Grid
-                templateColumns={{
-                    base: "1fr",
-                    md: "repeat(2, 1fr)",
-                    lg: "repeat(3, 1fr)",
-                }}
-                gap={4}
-            >
-                {events.map((event) => (
-                    <EventCard key={event.id} event={event} user={currentUser.user_id}/>
-                ))}
-            </Grid>
+            {events.length === 0 ? (
+                <Flex justify="center" align="center" height="50vh">
+                    <Text fontSize="xl" color="gray.500">
+                        No Events Found 🙁
+                    </Text>
+                </Flex>
+            ) : (
+                <Grid
+                    templateColumns={{
+                        base: "1fr",
+                        md: "repeat(2, 1fr)",
+                        lg: "repeat(3, 1fr)",
+                    }}
+                    gap={4}
+                >
+                    {events.map((event) => (
+                        <JoinedEventCard key={event.id} event={event} user={currentUser.user_id} />
+                    ))}
+                </Grid>
+            )}
         </Container>
     );
 };
-export default EventListGrid
+export default ManageEventGrid

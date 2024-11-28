@@ -10,11 +10,11 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
-const JoinModal = ({ event }) => {
+const LeaveModal = ({ event }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
-     const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleRegister = async () => {
         setIsSubmitting(true);
@@ -22,7 +22,7 @@ const JoinModal = ({ event }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${event.id}/register`,
+                `http://localhost:5000/events/${event.id}/leave`,
                 {},
                 {
                     headers: {
@@ -36,7 +36,7 @@ const JoinModal = ({ event }) => {
             const isSuccess = response.status === 200;
 
             toast({
-                title: isSuccess ? "Registration successful" : "Registration failed",
+                title: isSuccess ? "Left Event" : "failed",
                 description: message,
                 status: isSuccess ? "success" : "error",
                 duration: 4000,
@@ -46,11 +46,12 @@ const JoinModal = ({ event }) => {
 
             if (isSuccess) {
                 onClose();
-                navigate('/joined-event');
+                window.location.reload();
             }
+
         } catch (error) {
             toast({
-                title: "Registration failed",
+                title: "Leaving Event Failed",
                 description: error.response?.data?.message || "An error occurred",
                 status: "error",
                 duration: 4000,
@@ -64,21 +65,21 @@ const JoinModal = ({ event }) => {
 
     return (
         <>
-            <Button colorScheme="blue" onClick={onOpen}>Join Event</Button>
+            <Button colorScheme="red" onClick={onOpen}>Leave Event</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent maxW="500px">
-                    <ModalHeader>Join Event</ModalHeader>
+                    <ModalHeader>Leave Event</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={5}>
-                        <Text>Would you like to join this event?</Text>
+                        <Text>Would you like to leave this event?</Text>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
-                            Register
+                        <Button colorScheme="red" mr={3} onClick={handleRegister} isLoading={isSubmitting}>
+                            Leave
                         </Button>
-                        <Button colorScheme="red" onClick={onClose} ml={3}>
+                        <Button colorScheme="blue" onClick={onClose} ml={3}>
                             Cancel
                         </Button>
                     </ModalFooter>
@@ -88,4 +89,4 @@ const JoinModal = ({ event }) => {
     );
 };
 
-export default JoinModal;
+export default LeaveModal;

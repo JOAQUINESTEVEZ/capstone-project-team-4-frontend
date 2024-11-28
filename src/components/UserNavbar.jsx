@@ -1,4 +1,6 @@
-import { Box, Button, Container, Flex, Link, Spacer, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
+import {
+	Box, Button, Container, Flex, Link, Spacer, useColorMode, useColorModeValue, useToast, Menu, MenuButton, MenuList, MenuItem, MenuDivider,
+} from "@chakra-ui/react";
 import { useAuth } from "../context/AuthContext";
 import {useNavigate} from "react-router-dom";
 
@@ -48,35 +50,58 @@ const UserNavbar = () => {
 
 								{/* home tab */}
 								<Link href="/" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={"blue.200"}>
+									<Button variant="ghost" colorScheme={"blue.200"}>
 										Home
 									</Button>
 								</Link>
 
 								{/* create-event tab */}
 								<Link href="/create-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={"blue.200"}>
+									<Button variant="ghost" colorScheme={"blue.200"}>
 										Create Event
 									</Button>
 								</Link>
 
 								{/* manage-event tab */}
-								<Link href="/manage-event" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={"blue.200"}>
+								<Menu>
+									<MenuButton
+										as={Button}
+										variant="ghost"
+										colorScheme={"blue.200"}
+										rightIcon={"🔽"}
+									>
 										Manage Event
-									</Button>
-								</Link>
+									</MenuButton>
+									<MenuList>
+										<MenuItem as={Link} href="/manage-event">
+											Events Created
+										</MenuItem>
+
+										<MenuDivider />
+
+										<MenuItem as={Link} href="/joined-event">
+											Events Joined
+										</MenuItem>
+									</MenuList>
+								</Menu>
 
 								{/* events-list tab */}
 								<Link href="/event-list" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={"blue.200"} >
+									<Button variant="ghost" colorScheme={"blue.200"} >
 										Event List
+									</Button>
+								</Link>
+
+								{/* invitations-list tab */}
+								<Link href="/invitations" _hover={{ textDecoration: "none" }}>
+									<Button variant="ghost" colorScheme={"blue.200"} >
+										Invitations
 									</Button>
 								</Link>
 
 								{/* about tab */}
 								<Link href="/about" _hover={{ textDecoration: "none" }}>
-									<Button variant="ghost" color={"blue.200"} >
+									<Button variant="ghost" ccolorScheme={"blue.200"} >
 										About
 									</Button>
 								</Link>
