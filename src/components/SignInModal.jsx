@@ -31,7 +31,7 @@ const SignInModal = () => {
   const handleSubmit = async() => {
 
   try{
-      const response = await axios.post("http://localhost:5000/auth/login", formData);
+      const response = await axios.post("https://eventmaster-backend-1hao.onrender.com/auth/login", formData);
       const token = response.data.token;
 
       localStorage.setItem('token', token);

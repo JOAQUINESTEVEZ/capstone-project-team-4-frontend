@@ -21,7 +21,7 @@ const CancelModal = ({ event }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${event.id}/cancel`,
+                `https://eventmaster-backend-1hao.onrender.com/events/${event.id}/cancel`,
                 {},
                 {
                     headers: {

@@ -13,7 +13,7 @@ const InvitationGrid = () => {
         const token = localStorage.getItem('token');
         const fetchInvites = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/events/invitations", {
+                const response = await axios.get("https://eventmaster-backend-1hao.onrender.com/events/invitations", {
                    headers: {
                        'Authorization': `Bearer ${token}`,
                        'Content-Type': "application/json",

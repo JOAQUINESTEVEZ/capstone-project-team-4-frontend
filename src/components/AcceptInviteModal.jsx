@@ -22,7 +22,7 @@ const AcceptInviteModal = ({ invites }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${invites.event_id}/rsvp?invitation_id=${invites.id}&answer=yes`,
+                `https://eventmaster-backend-1hao.onrender.com/events/${invites.event_id}/rsvp?invitation_id=${invites.id}&answer=yes`,
                 {},
                 {
                     headers: {

@@ -28,7 +28,7 @@ const ManageEventGrid = () => {
         const token = localStorage.getItem('token');
         const fetchEvents = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/events/", {
+                const response = await axios.get("https://eventmaster-backend-1hao.onrender.com/events/", {
                    headers: {
                        'Authorization': `Bearer ${token}`,
                        'Content-Type': "application/json",
