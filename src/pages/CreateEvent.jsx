@@ -41,7 +41,7 @@ const CreateEvent = () => {
       const response = await axios.post("https://eventmaster-backend-1hao.onrender.com/events/create", formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
-          'Content-Type':  "application/json",IHMC
+          'Content-Type':  "application/json",
           
         }
       });
