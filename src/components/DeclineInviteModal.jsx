@@ -20,7 +20,7 @@ const DeclineInviteModal = ({ invites }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${invites.event_id}/rsvp?invitation_id=${invites.id}&answer=no`,
+                `https://eventmaster-backend-1hao.onrender.com/events/${invites.event_id}/rsvp?invitation_id=${invites.id}&answer=no`,
                 {},
                 {
                     headers: {

@@ -29,7 +29,7 @@ const InviteModal = ({ event }) => {
   const token = localStorage.getItem('token');
 
   try{
-      const response = await axios.post("http://localhost:5000/events/" + event.id +"/invite", formData, {
+      const response = await axios.post("https://eventmaster-backend-1hao.onrender.com/events/" + event.id +"/invite", formData, {
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type':  "application/json",

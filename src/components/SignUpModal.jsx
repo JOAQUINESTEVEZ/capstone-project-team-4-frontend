@@ -55,7 +55,7 @@ const SignUpModal = () => {
     try {
       const { email, first_name, last_name, password } = formData;
       const response = await axios.post(
-        "http://localhost:5000/auth/register",
+        "https://eventmaster-backend-1hao.onrender.com/auth/register",
         { email, first_name, last_name, password }, // Exclude confirmPassword
         {
           headers: {

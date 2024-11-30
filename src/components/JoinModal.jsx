@@ -22,7 +22,7 @@ const JoinModal = ({ event }) => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/events/${event.id}/register`,
+                `https://eventmaster-backend-1hao.onrender.com/events/${event.id}/register`,
                 {},
                 {
                     headers: {
