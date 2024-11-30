@@ -11,13 +11,14 @@ GridItem,
 Link,
 } from "@chakra-ui/react";
 import SignUpModal from "/src/components/SignUpModal.jsx";
+import bg from '../assets/bg.jpg'
 
 const Home = () => {
 	return (
 		<>
 			<Box
 				minH="100vh"
-				bgImage="url('/src/pages/img.jpg')"
+				bgImage={`url(${bg})`}
 				bgSize="cover"
 				bgPosition="center"
 				bgRepeat="no-repeat"
