@@ -13,6 +13,10 @@ import jsQR from 'jsqr';
 
 
 const ManageModal = ({ hostToken, event, user}) => {
+	const [scan, setScan] = useState(false); // Toggles the camera
+	const [result, setResult] = useState(null); // Stores QR scan result
+
+
 	const token = localStorage.getItem('token');
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -50,14 +54,10 @@ const ManageModal = ({ hostToken, event, user}) => {
 		{ x: 'Remaining', y: 100 - accepted },
 	]
 	
-
-	const [scan, setScan] = useState(false);
-	const [result, setResult] = useState(null);	
-
-
 	const handleScan = (data) => {
 		if (data) {
 			handleQRVerification(data.text);
+			setScan(false);
 		}
 	};
 
@@ -66,9 +66,10 @@ const ManageModal = ({ hostToken, event, user}) => {
 	};
 
 	const handleQRVerification = async (url) => {
-		const urlPattern = /^http:\/\/.+\/events\/\d+\/verify_qrcode\?attendee_id=\d+$/;
+		const urlPatternTest = /^http:\/\/.+\/events\/\d+\/verify_qrcode\?attendee_id=\d+$/;
+		const urlPattern = /^https:\/\/[^/]+\/events\/[^/]+\/verify_qrcode\?attendee_id=[^&]+$/;
 
-		if (!urlPattern.test(url)) {
+		if (!urlPattern.test(url) && !urlPatternTest.test(url)) {
 			toast({
 				title: "Invalid QR Code",
 				description: "The scanned QR code does not match the expected format.",
@@ -249,27 +250,36 @@ const ManageModal = ({ hostToken, event, user}) => {
 							</Button>
 							
 							<div >
-								{scan ? (
-									<QrScanner
-										delay={300}
-										onError={handleError}
-										onScan={handleScan}
-										style={previewStyle}
-									/>
-								) : (
-									<>
-										<Button colorScheme="blue" onClick={() => document.getElementById('cameraInput').click()} mr = {3}>Scan QR</Button>
-										<input
-											type="file"
-											id="cameraInput"
-											accept="image/*"
-											capture="camera"
-											onChange={handleFileUpload}
-											style={{ display: 'none' }} 
-										/>
-										
-									</>
-								)}
+							{scan ? (
+					<div style={{ position: 'relative' }}>
+						<QrScanner
+							delay={300}
+							onError={handleError}
+							onScan={handleScan}
+							style={{ width: '100%', maxWidth: '320px', height: '240px' }}
+						/>
+						<Button
+							colorScheme="red"
+							onClick={() => setScan(false)}
+							style={{
+								position: 'absolute',
+								top: '5px',
+								right: '5px',
+								zIndex: 2,
+							}}
+						>
+							Stop Scan
+						</Button>
+					</div>
+				) : (
+					<Button
+						colorScheme="blue"
+						onClick={() => setScan(true)}
+						mr={3}
+					>
+						Scan QR
+					</Button>
+				)}
 							</div>
 							
 							<Button colorScheme="blue" onClick={onClose}>
