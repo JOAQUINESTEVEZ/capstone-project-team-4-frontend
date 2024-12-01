@@ -14,8 +14,7 @@ const UserNavbar = () => {
 
 	const handleSignOut = () => {
 
-		sessionStorage.removeItem('sessionToken');
-		sessionStorage.removeItem('tokenExpiration');
+		localStorage.removeItem('token');
 
 		toast({
 		    itle: "Signed out successfully",

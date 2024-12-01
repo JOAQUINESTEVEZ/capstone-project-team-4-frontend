@@ -1,7 +1,6 @@
 import {Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, Text} from "@chakra-ui/react";
 import InviteModal from "./InviteModal.jsx";
 import JoinModal from "./JoinModal.jsx";
-import CancelModal from "./CancelModal.jsx";
 import ManageModal from "./ManageModal";
 
 const EventCard = ({ event, user}) => {
@@ -11,8 +10,8 @@ const EventCard = ({ event, user}) => {
     return (
         <Card>
             <CardHeader>
-                <Flex gap={4}>
-                    <Flex flex="1" gap="4" alignItems="center">
+                <Flex gap={4} flexWrap="wrap" align="flex-start">
+                    <Flex flex="1" gap="4" alignItems="center" minWidth="0" overflow="hidden">
                         <Avatar src='https://avatar.iran.liara.run/public'/>
                         <Box>
                             <Heading size='sm'>{event.name}</Heading>
