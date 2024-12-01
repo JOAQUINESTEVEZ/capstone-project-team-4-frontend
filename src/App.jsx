@@ -1,4 +1,4 @@
-import {createBrowserRouter, Route, createRoutesFromElements, RouterProvider, Navigate} from 'react-router-dom';
+import {createBrowserRouter, Route, createRoutesFromElements, RouterProvider, Navigate, useLocation} from 'react-router-dom';
 import About from "./pages/About.jsx";
 import Home from "./pages/Home.jsx";
 import CreateEvent from "./pages/CreateEvent.jsx";
@@ -15,7 +15,9 @@ const ProtectedRoute = ({ children }) => {
         return localStorage.getItem('token') !== null;
     };
 
-    return isAuthenticated() ? children : <Navigate to="/"/>;
+    const location = useLocation();
+
+    return isAuthenticated() ? children ( children ) : ( <Navigate to="/" state={{ from: location }} /> );
 };
 
 const router = createBrowserRouter(

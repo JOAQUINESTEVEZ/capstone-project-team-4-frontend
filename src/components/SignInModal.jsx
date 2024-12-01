@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 import axios from "axios";
-import { useAuth } from "/src/context/AuthContext"
+import { useAuth } from "/src/context/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SignInModal = () => {
 
@@ -18,6 +19,9 @@ const SignInModal = () => {
   const finalRef = React.useRef(null)
   const toast = useToast();
   const { setIsAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
 
   const [formData, setFormData] = useState({
     email: "",
@@ -35,7 +39,6 @@ const SignInModal = () => {
       const token = response.data.token;
 
       localStorage.setItem('token', token);
-
       setIsAuthenticated(true);
 
           toast({
@@ -46,7 +49,9 @@ const SignInModal = () => {
               isClosable: true,
               position: "top",
           });
+
           onClose();
+          navigate(from);
       } catch (error) {
           toast({
               title: "Login failed",
