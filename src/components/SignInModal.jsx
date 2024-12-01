@@ -38,7 +38,7 @@ const SignInModal = () => {
       const response = await axios.post("https://eventmaster-backend-1hao.onrender.com/auth/login", formData);
       const token = response.data.token;
 
-      localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
       setIsAuthenticated(true);
 
           toast({

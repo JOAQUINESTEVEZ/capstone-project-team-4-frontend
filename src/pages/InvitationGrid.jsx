@@ -10,7 +10,7 @@ const InvitationGrid = () => {
 
     useEffect(() => {
 
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const fetchInvites = async () => {
             try {
                 const response = await axios.get("https://eventmaster-backend-1hao.onrender.com/events/invitations", {

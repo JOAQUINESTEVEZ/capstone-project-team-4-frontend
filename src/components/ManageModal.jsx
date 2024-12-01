@@ -17,7 +17,7 @@ const ManageModal = ({ hostToken, event, user}) => {
 	const [result, setResult] = useState(null); // Stores QR scan result
 
 
-	const token = localStorage.getItem('token');
+	const token = sessionStorage.getItem('token');
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = React.useRef(null)

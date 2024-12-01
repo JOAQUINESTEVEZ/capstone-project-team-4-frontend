@@ -18,7 +18,7 @@ const LeaveModal = ({ event }) => {
 
     const handleRegister = async () => {
         setIsSubmitting(true);
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
 
         try {
             const response = await axios.post(

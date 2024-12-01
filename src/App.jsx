@@ -12,7 +12,7 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 const ProtectedRoute = ({ children }) => {
     const isAuthenticated = () => {
 
-        return localStorage.getItem('token') !== null;
+        return sessionStorage.getItem('token') !== null;
     };
 
     const location = useLocation();

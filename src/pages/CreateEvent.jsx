@@ -19,7 +19,7 @@ const CreateEvent = () => {
 
   const bg = useColorModeValue("black.100", "gray.800");
   const initialRef = React.useRef(null);
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const toast = useToast();
   const navigate = useNavigate();
 

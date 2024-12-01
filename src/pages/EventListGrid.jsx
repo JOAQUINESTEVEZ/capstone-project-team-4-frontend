@@ -15,7 +15,7 @@ const getUserFromToken = (token) => {
     }
 };
 const EventListGrid = () => {
-    const sessionToken = localStorage.getItem('token');
+    const sessionToken = sessionStorage.getItem('token');
     const currentUser = getUserFromToken(sessionToken);
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const EventListGrid = () => {
     // Fetch events from the backend
     useEffect(() => {
 
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const fetchEvents = async () => {
             try {
                 const response = await axios.get("https://eventmaster-backend-1hao.onrender.com/events/", {
