@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
 
     const location = useLocation();
 
-    return isAuthenticated() ? children ( children ) : ( <Navigate to="/" state={{ from: location }} /> );
+    return isAuthenticated() ? ( children ) : ( <Navigate to="/" state={{ from: location }} /> );
 };
 
 const router = createBrowserRouter(
